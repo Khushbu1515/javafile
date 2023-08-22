@@ -2,15 +2,16 @@
 
 import React from 'react';
 import {useState}  from  "react"
-import Parent, { Parents } from './Parents';
+
 
 
 const App = () =>{
-  // const[data,setData]=useState("khushbu");
-const data ="kushubooooooooooo"
+   const[data,setData]=useState("khushbu");
+
   return (
     <div>
-    <Parents data={data}/>
+    <hq>{data} </hq>
+    <button onClick={()=>{setData("khushbu kumari")}}>update data</button>
     </div>)
 }
 export default App;
