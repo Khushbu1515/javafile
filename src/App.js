@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import Parent from "./Parent"
+import  Child from "./Child"
 
 
 const App = () =>{
@@ -9,9 +9,9 @@ const App = () =>{
 
   return (
     <div>
-    <h1>This is a child component</h1>
-    <Parent name={"amarnath"}  age ={25}></Parent>
-       </div>
+    <h1>This is a parent component</h1>
+    <Child name ={"khushbu"}  age={22}></Child>   
+      </div>
   )
 }
 export default App;
