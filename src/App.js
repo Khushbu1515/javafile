@@ -1,20 +1,24 @@
 
 
-import React, { useRef } from 'react';
-
+import React, { useCallback, useState } from 'react';
 
 const App = () =>{
-   const ref=useRef(0);  // return current object and also accept current value
-   const handler=()=>{
-    ref.current++
-    console.log(`click ${ref.current} times`)
+   const[count,setCount]   = useState(0) // when child want to re render again again that acceps callback  fun and dependency
+   const inc=useCallback(()=>{
+    setCount(count+1)
    }
+  ,[count])
+  const dec=useCallback(()=>{
+    setCount(count-1)
+   }
+  ,[count])
    
-  console.log("i rendered")
+  
   return (
     <div>
-    
-    <button   style ={{color:'blueviolet'}}  onClick={handler}>click </button>
+    <h1>count:{count}</h1>
+    <button   style ={{color:'blueviolet'}}  onClick={inc}>increment </button>
+    <button   style ={{color:'blueviolet'}}  onClick={dec}>decrement </button>
     </div>)
 }
 export default App;
