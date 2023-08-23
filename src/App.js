@@ -10,8 +10,10 @@ const App = () =>{
 
   return (
     <div>
-    <hq>{data} </hq>
-    <button onClick={()=>{setData("khushbu kumari")}}>update data</button>
+    <hq  style={{color:"chocolate"}}>{data} </hq>
+    <br/>
+    <br/>
+    <button   style ={{color:'blueviolet'}}  onClick={()=>{setData("khushbu kumari")}}>update data</button>
     </div>)
 }
 export default App;
