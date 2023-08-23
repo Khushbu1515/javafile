@@ -1,22 +1,20 @@
 
 
-import React from 'react';
-import {useState,useEffect}  from  "react"
-
+import React, { useRef } from 'react';
 
 
 const App = () =>{
-   const[count,setCount]=useState(0);
-   useEffect(()=>{
-    document.title=`you click {count} times`
-   },[count])
-
+   const ref=useRef(0);  // return current object and also accept current value
+   const handler=()=>{
+    ref.current++
+    console.log(`click ${ref.current} times`)
+   }
+   
+  console.log("i rendered")
   return (
     <div>
-    <hq  style={{color:"chocolate"}}>{count} </hq>
-    <br/>
-    <br/>
-    <button   style ={{color:'blueviolet'}}  onClick={()=>{setCount(count+1)}}>click {count} times</button>
+    
+    <button   style ={{color:'blueviolet'}}  onClick={handler}>click </button>
     </div>)
 }
 export default App;
