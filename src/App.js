@@ -1,16 +1,16 @@
 
 
 import React from 'react';
-import {useState}  from  "react"
-import Parent, { Parents } from './Parents';
+import  Child from  './Child';
 
 
 const App = () =>{
-  // const[data,setData]=useState("khushbu");
-const data ="kushubooooooooooo"
+  
+
   return (
     <div>
-    <Parents data={data}/>
+    <h1>This is a parent component</h1>
+    <Child  name={"khushbu"}  age = {22}/>
     </div>)
 }
 export default App;

@@ -1,12 +1,14 @@
 import  React from  "react"
 
 
-const Child = () =>
+const Child = (props) =>
 {
- let name="khushi" , age=22
-
+ 
     return (
-        <h1>my name is {name} and age is {age}</h1>
+        <div>
+        <h1 style={{color:"blueviolet"}}>This is a child component</h1>
+        <h1 style ={{color:"blueviolet"}}>my name is {props.name} and age  is {props.age}</h1>
+        </div>
     )
 }
 
