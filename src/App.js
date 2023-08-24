@@ -1,16 +1,20 @@
 
 
-import React from 'react';
-import Parent from "./Parent"
+import React ,{useState} from 'react';
+import Child from './Child';
 
 
-const App = () =>{
+const App = () =>{  //parent component
+  const[datafromchild , setDataFromChild]=useState("khushbu")
+const handledtoc=(inputdata)=>
+{
+  setDataFromChild(inputdata);
   
-
+}
   return (
     <div>
-    <h1>This is a child component</h1>
-    <Parent name={"amarnath"}  age ={25}></Parent>
+    <h1>data from child:{datafromchild}</h1>
+    <Child   onDataUpdate={handledtoc}></Child>
        </div>
   )
 }
