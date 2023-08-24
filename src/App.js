@@ -1,25 +1,35 @@
 
 
-import React, { useCallback, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
-const App = () =>{
-   const[count,setCount]   = useState(0) // when child want to re render again again that acceps callback  fun and dependency
-   const inc=useCallback(()=>{
-    setCount(count+1)
-   }
-  ,[count])
-  const dec=useCallback(()=>{
-    setCount(count-1)
-   }
-  ,[count])
+const  App=()=> {
+    const [number, setNumber] = useState(0)
+    // Using useMemo
+    const squaredNum = useMemo(()=> {
+      return squareNum(number);
+    }, [number])
+    
    
-  
-  return (
-    <div>
-    <h1>count:{count}</h1>
-    <button   style ={{color:'blueviolet'}}  onClick={inc}>increment </button>
-    <button   style ={{color:'blueviolet'}}  onClick={dec}>decrement </button>
-    </div>)
-}
-export default App;
-
+   // Change the state to the input
+    const onChangeHandler = (e) => {
+      setNumber(e.target.value);
+    }
+     
+    return (
+      <div>
+       
+        <input type="number" placeholder="Enter a number"
+            value={number} onChange={onChangeHandler}>
+        </input>
+        <h1>output:{squaredNum}</h1>
+      </div>
+    );
+  }
+   
+  // function to square the value
+  function squareNum(number){
+    console.log("Squaring will be done!");
+    return Math.pow(number, 2);
+  }
+   
+  export default App;
