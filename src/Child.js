@@ -5,10 +5,10 @@ import  React, {useState} from  "react"
 const  Child = ({onDataUpdate}) =>
 {
    const[inputdata,setInputData]=useState("")
- const handleclick=()=>
+ const handleclick=(e)=>
  {
  onDataUpdate(inputdata);
-
+ setInputData("");
  }
     return (
         <div>
