@@ -1,29 +1,44 @@
 
 
-import React, { createContext, useContext } from 'react';
+import React, { useReducer } from 'react';
 
-// Create a context
-const ThemeContext = createContext();
+// Initial state
+const initialState = {
+  count: 0,
+};
 
-// Create a component that provides the context value
-function ThemeProvider({ children }) {
-  const theme = 'light'; // You can replace this with dynamic logic
-  return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
-}
+// Reducer function
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + 1 };
+    case 'DECREMENT':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+};
 
-// Create a component that consumes the context value using useContext
-function ThemeDisplay() {
-  const theme = useContext(ThemeContext);
-  return <div>Current theme: {theme}</div>;
+// Component that uses useReducer
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
+      <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
+    </div>
+  );
 }
 
 // Your main app component
 function App() {
   return (
-    <ThemeProvider>
-      <ThemeDisplay />
-    </ThemeProvider>
+    <div>
+      <h1>Counter App using useReducer</h1>
+      <Counter />
+    </div>
   );
 }
-
 export default App;
