@@ -1,12 +1,6 @@
 
 
 import React, { useReducer } from 'react';
-
-// Initial state
-const initialState = {
-  count: 0,
-};
-
 // Reducer function
 const reducer = (state, action) => {
   switch (action.type) {
@@ -19,8 +13,11 @@ const reducer = (state, action) => {
   }
 };
 
-// Component that uses useReducer
-function Counter() {
+// Initial state
+const initialState = { count: 0 };
+
+const Counter = () => {
+  // Using useReducer hook
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
@@ -30,15 +27,6 @@ function Counter() {
       <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
     </div>
   );
-}
+};
 
-// Your main app component
-function App() {
-  return (
-    <div>
-      <h1>Counter App using useReducer</h1>
-      <Counter />
-    </div>
-  );
-}
-export default App;
+export default Counter;
