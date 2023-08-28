@@ -1,6 +1,49 @@
-span.icon-test {
-    text-align: center;
-    font-size: 35px;
-    color: red;
-    background-color: white
-}
+.split-test {
+    align-items: center;
+        display: flex;
+        height: 400px;
+    }
+    .upper-side
+    {
+        
+        text-align: center;
+        color:black;
+        background:cyan;
+    }
+    .bottom-side
+    {
+        color:crimson;
+        
+    }
+    .btn-primary {
+      font-family: Raleway-SemiBold;
+      font-size: 13px;
+      color: white;
+      letter-spacing: 1px;
+      line-height: 15px;
+      border: 2px solid rgba(58, 133, 191, 0.75);
+      border-radius: 40px;
+      background: red;
+      transition: all 0.3s ease 0s;
+    }
+      .card-deck {
+        height: 400px;
+          width:50% ;/* Adjust this value as needed */
+            margin: 0 auto; /* This centers the card deck horizontally */
+            
+            background:  linear-gradient(to bottom, cyan 50%, white 50%);
+            background-clip: padding-box;
+            
+      }
+      .colors{
+
+        height:fit-content;
+        width:fit-content;
+        background:  linear-gradient(to bottom, cyan 50%, white 50%);
+            background-clip: padding-box;
+      }
+          
+      
+      
+       
+     
