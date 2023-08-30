@@ -1,0 +1,45 @@
+.login{
+  text-align:center;
+  display: flex;
+  color:indigo;
+  font-size: 15px;
+justify-content: center;
+
+}
+.logo{
+    text-align:center;
+    justify-content: center;
+    display: flex;
+    margin:0 auto ;
+    height:250px;
+    width:250px;
+}
+.table{
+    text-align:"center";
+    display: flex;
+    margin:0 auto ;
+    font-size: 18px;
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    
+}
+.button{
+     
+        background-color:blueviolet;
+        border-radius:12px;
+        color:white;
+        align-items: center;
+        font-size: 18px;
+        position: absolute;
+       left: 50%;
+       transform: translateX(-50%);
+        
+      
+}
+
+.tabletwo{
+    width: 100%;
+}
