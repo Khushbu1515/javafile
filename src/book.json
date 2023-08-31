@@ -2,22 +2,22 @@
     "books": [
         {
             "Id": 1,
-            "Book-name": "Molloy",
-            "Book-author": "Samuel Beckett",
-            "Publish-date": "24 nov 1995"
+            "Book_name": "Molloy",
+            "Book_author": "Samuel Beckett",
+            "Publish_date": "24 nov 1995"
         },
         {
             "Id": 2,
-            "Book-name": "Pride and Prejudice",
-            "Book-author": "Jane Austen",
-            "Publish-date": "25feb 1884"
+            "Book_name": "Pride and Prejudice",
+            "Book_author": "Jane Austen",
+            "Publish_date": "25feb 1884"
         },
         {
             
             "Id": 3,
-            "Book-name": "Pride and Prejudice",
-            "Book-author": "Samuel Beckett",
-            "Publish-date": "25feb 1984"
+            "Book_name": "Pride and Prejudice",
+            "Book_author": "Samuel Beckett",
+            "Publish_date": "25feb 1984"
         }
     ]
 }
