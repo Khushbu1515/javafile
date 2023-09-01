@@ -1,77 +1,95 @@
 import React, { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
+
 const Createbook = () => {
   const navigate = useNavigate();
-  const [formdata, Setformdata] = useState({
-    Id:"",
+  const [data, setData] = useState([]);
+  const [formData, setFormData] = useState({
+    id: "",
     Book_name: "",
     Book_author: "",
     Publish_date: "",
   });
-   
-  const handlesubmit = () => {
-    // Convert formdata to JSON string
-    // Save JSON data to local storage
-    localStorage.setItem("Book_data",(formdata.append("Id",""),formdata.append("Book_name",""),formdata.append("Book_author",""),formdata.append("Publish_date","")));
-    // localStorage.setItem("Book_author", JSON.stringify(formdata.Book_author));
-    // localStorage.setItem("Publish_date", JSON.stringify(formdata.Publish_date));
-    // Optionally show a message or perform other actions
-    alert("Data saved to local storage!");
-    navigate("/");
-  };
 
+  const handlesubmit = (event) => {
+    event.preventDefault();
+    if (formData.Book_name && formData.Book_author && formData.Publish_date) {
+      const newData = { ...formData, id: Date.now() };
+  
+      // Retrieve existing data from localStorage
+      const existingData = JSON.parse(localStorage.getItem("crudData")) || [];
+  
+      // Merge the new data with the existing data
+      const updatedData = [...existingData, newData];
+  
+      // Update state and save the merged data to localStorage
+      setData(updatedData);
+      localStorage.setItem("crudData", JSON.stringify(updatedData));
+  
+      // Reset the form fields
+      setFormData({
+        id: "",
+        Book_name: "",
+        Book_author: "",
+        Publish_date: "",
+      });
+  
+      navigate("/");
+    } else {
+      // Add validation/error handling here
+      alert("Please fill in all the fields.");
+    }
+  };
+  
+ // Handling onChange event
   const handlechange = (e) => {
     const { name, value } = e.target;
-    Setformdata((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   return (
     <div>
       <form>
-        <h1>BOOK LISTING FORM !</h1>
-        <div class="form-group">
-          <label for="bookname">Book_name: </label>
+        <h1>BOOK LISTING FORM!</h1>
+        <br />
+        <div className="form-group">
+          <label htmlFor="bookname">Book_name: </label>
           <input
             type="text"
-            placeholder="enter a author name"
+            placeholder="Enter a book name"
             name="Book_name"
-            value={formdata.Book_name}
+            value={formData.Book_name}
             onChange={handlechange}
           />
         </div>
-
         <br />
-        <div class="form-group">
-          <label for="authorname">Book_author: </label>
+        <div className="form-group">
+          <label htmlFor="authorname">Book_author: </label>
           <input
             type="text"
-            value={formdata.Book_author}
-            placeholder="enter  author name"
+            value={formData.Book_author}
+            placeholder="Enter an author name"
             name="Book_author"
             onChange={handlechange}
           />
         </div>
         <br />
-        <div class="form-group">
-          <label for="publishdate">publish_date: </label>
+        <div className="form-group">
+          <label htmlFor="publishdate">Publish_date: </label>
           <input
-            type="text"
-            value={formdata.Publish_date}
-            placeholder="enter publish date"
+            type="text" 
+            value={formData.Publish_date}
+            placeholder="Enter publish date"
             name="Publish_date"
             onChange={handlechange}
           />
         </div>
         <br />
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Check me out
-          </label>
-        </div>
-        <br />
-        <button type="submit" class="btn btn-primary" onClick={handlesubmit}>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={handlesubmit}
+        >
           Submit
         </button>
       </form>

@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./File.css";
 import book from "../assets/book.jpg";
-import books from "../../book.json";
+
+
 // import Createbook from "../create/Createbook";
 import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
-  const navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const navigate =useNavigate();
+  
+    const handleDelete = (id) => {
+      // Create a new array without the item with the specified ID
+      const updatedData = data.filter(item => item.id !== id);
+      setData(updatedData);
+    
+  }
+  useEffect(() => {
+    // Retrieve data from localStorage and parse it as JSON
+    const bookdata = localStorage.getItem("crudData");
+    if (bookdata) {
+      const parsedData = JSON.parse(bookdata);
+    setData( parsedData);
+  }
+}, []); 
   return (
     <div className="homepage">
       <h1 className="logo">
@@ -24,7 +41,7 @@ const Homepage = () => {
       <hr />
 
       <div className="tabletwo">
-        <table>
+        <table className="table">
           <tr>
             <th>Id</th>
             <th>Book-name</th>
@@ -33,16 +50,17 @@ const Homepage = () => {
             <th>Action</th>
           </tr>
           <tbody>
-            {books.books.map((item) => (
-              <tr key={item.Id}>
-                <td>{item.Id}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <button onClick={()=>navigate("/Create")}>Edit</button>
-                <button>Delete</button>
-              </tr>
-            ))}
+            {data &&
+              data.map((item) => (
+                <tr key={item.id}>
+                  <td>{item?.id}</td>
+                  <td>{item?.Book_name}</td>
+                  <td>{item?.Book_author}</td>
+                  <td>{item?.Publish_date}</td>
+                  <button onClick={() => navigate(/edit)>Edit</button>
+                  <button onClick={()=>handleDelete(item.id)}>Delete</button>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
