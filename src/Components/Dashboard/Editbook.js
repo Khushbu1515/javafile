@@ -90,7 +90,7 @@ const Editbook = () => {
     setFormData((prevData) => ({
       //console.log("ggggggjgjggjg",date)
       ...prevData,
-      Publish_date: date ? date.toLocaleString() : "", // Store the date as ISO string
+      Publish_date: date ? date : "", // Store the date as ISO string
      
     }));
     console.log("ggggggjgjggjg",formData)
@@ -127,7 +127,7 @@ const Editbook = () => {
           <label htmlFor="publishdate">Publish_date: </label>
           <DatePicker
             selected={
-              formData.Publish_date ? new Date(formData.Publish_date) : null
+              formData.Publish_date 
             }
             onChange={handleDateChange}
             placeholderText="YY/MM/DD"
