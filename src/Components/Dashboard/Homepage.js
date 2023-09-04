@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import "./File.css";
 import book from "../assets/book.jpg";
-
-
+import moment from "moment";
 // import Createbook from "../create/Createbook";
 import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
   const [data, setData] = useState([]);
-  const navigate =useNavigate();
-  
-    const handleDelete = (id) => {
-      // Create a new array without the item with the specified ID
-      const updatedData = data.filter(item => item.id !== id);
-      setData(updatedData);
-    
-  }
+  const navigate = useNavigate();
+
+  const handleDelete = (id) => {
+    // Create a new array without the item with the specified ID
+    const updatedData = data.filter((item) => item.id !== id);
+    setData(updatedData);
+    localStorage.setItem("crudData", JSON.stringify(updatedData));
+  };
   useEffect(() => {
     // Retrieve data from localStorage and parse it as JSON
     const bookdata = localStorage.getItem("crudData");
     if (bookdata) {
       const parsedData = JSON.parse(bookdata);
-    setData( parsedData);
-  }
-}, []); 
+      setData(parsedData);
+    }
+  }, []);
   return (
     <div className="homepage">
       <h1 className="logo">
@@ -36,7 +35,7 @@ const Homepage = () => {
         create book
       </button>
       <br />
-      <br />
+      
 
       <hr />
 
@@ -50,17 +49,28 @@ const Homepage = () => {
             <th>Action</th>
           </tr>
           <tbody>
-            {data &&
-              data.map((item) => (
+            {data.length > 0 ? (
+              data.map((item,index) => (
                 <tr key={item.id}>
-                  <td>{item?.id}</td>
+                  <td>{index+1}</td>
                   <td>{item?.Book_name}</td>
                   <td>{item?.Book_author}</td>
-                  <td>{item?.Publish_date}</td>
-                  <button onClick={() => navigate(/edit)>Edit</button>
-                  <button onClick={()=>handleDelete(item.id)}>Delete</button>
+                  <td>{moment(item?.Publish_date).format("L")}</td>
+                  <td>
+                    <button onClick={() => navigate(`/edit/${item.id}`)}>
+                      Edit
+                    </button>
+                    <button onClick={() => handleDelete(item.id)}>
+                      Delete
+                    </button>
+                  </td>
                 </tr>
-              ))}
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5">No data available</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

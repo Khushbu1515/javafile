@@ -1,11 +1,18 @@
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Createbook = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  
   const [formData, setFormData] = useState({
     id: "",
+    Book_name: "",
+    Book_author: "",
+    Publish_date: "",
+  });
+  const [errors, setErrors] = useState({
     Book_name: "",
     Book_author: "",
     Publish_date: "",
@@ -13,19 +20,39 @@ const Createbook = () => {
 
   const handlesubmit = (event) => {
     event.preventDefault();
+
+    if (!formData.Book_name || !formData.Book_author) {
+      // Set error messages for empty fields
+      setErrors({
+        Book_name: !formData.Book_name ? "Book name is required" : "",
+        Book_author: !formData.Book_author ? "Author name is required" : "",
+        Publish_date: !formData.Publish_date ? "Publish date is required" : "",
+      });
+      return; // Prevent form submission
+    }
+    // Validate required fields
+    else {
+      toast.success("submit the data succesfully");
+    }
+
+    // Clear any previous error messages
+    setErrors({
+      Book_name: "",
+      Book_author: "",
+    });
     if (formData.Book_name && formData.Book_author && formData.Publish_date) {
       const newData = { ...formData, id: Date.now() };
-  
+
       // Retrieve existing data from localStorage
       const existingData = JSON.parse(localStorage.getItem("crudData")) || [];
-  
+
       // Merge the new data with the existing data
       const updatedData = [...existingData, newData];
-  
+
       // Update state and save the merged data to localStorage
-      setData(updatedData);
+      //setData(updatedData);
       localStorage.setItem("crudData", JSON.stringify(updatedData));
-  
+
       // Reset the form fields
       setFormData({
         id: "",
@@ -33,15 +60,12 @@ const Createbook = () => {
         Book_author: "",
         Publish_date: "",
       });
-  
+
       navigate("/");
-    } else {
-      // Add validation/error handling here
-      alert("Please fill in all the fields.");
     }
   };
-  
- // Handling onChange event
+
+  // Handling onChange event
   const handlechange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -61,6 +85,7 @@ const Createbook = () => {
             value={formData.Book_name}
             onChange={handlechange}
           />
+          <div className="error-message">{errors.Book_name}</div>
         </div>
         <br />
         <div className="form-group">
@@ -72,17 +97,22 @@ const Createbook = () => {
             name="Book_author"
             onChange={handlechange}
           />
+          <div className="error-message">{errors.Book_author}</div>
         </div>
         <br />
         <div className="form-group">
           <label htmlFor="publishdate">Publish_date: </label>
-          <input
-            type="text" 
-            value={formData.Publish_date}
-            placeholder="Enter publish date"
-            name="Publish_date"
-            onChange={handlechange}
+          <DatePicker
+            selected={formData.Publish_date}
+            onChange={(date) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                Publish_date: date,
+              }))
+            }
+            placeholderText="dd/MM/yyyy"
           />
+          <div className="error-message">{errors.Publish_date}</div>
         </div>
         <br />
         <button
