@@ -1,49 +1,40 @@
-/* .login{
-  text-align:center;
-  display: flex;
-  color:indigo;
-  font-size: 15px;
-justify-content: center;
-
-}
-.logo{
-    text-align:center;
+.form-container {
+    display: flex;
     justify-content: center;
-    display: flex;
-    margin:0 auto ;
-    height:250px;
-    width:250px;
-}
-.table{
-    text-align:"center";
-    display: flex;
-    margin:0 auto ;
-    font-size: 18px;
-    padding: 10px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    
-}
-.button{
-     
-        background-color:blueviolet;
-        border-radius:12px;
-        color:white;
-        align-items: center;
-        font-size: 18px;
-        position: absolute;
-       left: 50%;
-       transform: translateX(-50%);
-        
-      
+    align-items: center;
+    height: 100vh; /* Centers vertically within the viewport */
 }
 
-.tabletwo{
-    width: 100%;
-} */
+/* Style the form */
+form {
+    border: 2px solid black;
+    padding:25px;
+    height:auto;
+    width: auto/* Adjust the width as needed */
+}
+.inputfield{
+    
+    margin-bottom: 80px;
+}
 
+.text{
+    color:red;
+    text-align: center;
+    font-size:15px ;
+    margin-top: -50px;
+   
+    
+}
+.textsize{
+    font-size: 25px;
+    
+}
+.heading{
+    font-size: 50px;
+    color:black;
+    text-align:center;
+    
+}
 .logo{
     text-align:center;
     justify-content: center;

@@ -35,7 +35,6 @@ const Homepage = () => {
         create book
       </button>
       <br />
-      
 
       <hr />
 
@@ -50,9 +49,9 @@ const Homepage = () => {
           </tr>
           <tbody>
             {data.length > 0 ? (
-              data.map((item,index) => (
+              data.map((item, index) => (
                 <tr key={item.id}>
-                  <td>{index+1}</td>
+                  <td>{index + 1}</td>
                   <td>{item?.Book_name}</td>
                   <td>{item?.Book_author}</td>
                   <td>{moment(item?.Publish_date).format("L")}</td>

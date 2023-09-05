@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import "../Dashboard/File.css";
 
 const Createbook = () => {
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     id: "",
     Book_name: "",
@@ -21,7 +22,11 @@ const Createbook = () => {
   const handlesubmit = (event) => {
     event.preventDefault();
 
-    if (!formData.Book_name || !formData.Book_author) {
+    if (
+      !formData.Book_name ||
+      !formData.Book_author ||
+      !formData.Publish_date
+    ) {
       // Set error messages for empty fields
       setErrors({
         Book_name: !formData.Book_name ? "Book name is required" : "",
@@ -72,37 +77,40 @@ const Createbook = () => {
   };
 
   return (
-    <div>
-      <form>
-        <h1>BOOK LISTING FORM!</h1>
+    <div className="form-container">
+      <form className="form">
+        <h1 className="heading">BOOK LISTING FORM!</h1>
         <br />
-        <div className="form-group">
+        <div className="textsize">
           <label htmlFor="bookname">Book_name: </label>
           <input
+            className="inputfield"
             type="text"
             placeholder="Enter a book name"
             name="Book_name"
             value={formData.Book_name}
             onChange={handlechange}
           />
-          <div className="error-message">{errors.Book_name}</div>
+          <div className="text">{errors.Book_name}</div>
         </div>
         <br />
-        <div className="form-group">
+        <div className="textsize">
           <label htmlFor="authorname">Book_author: </label>
           <input
+            className="inputfield"
             type="text"
             value={formData.Book_author}
             placeholder="Enter an author name"
             name="Book_author"
             onChange={handlechange}
           />
-          <div className="error-message">{errors.Book_author}</div>
+          <div className="text">{errors.Book_author}</div>
         </div>
         <br />
-        <div className="form-group">
+        <div className="textsize">
           <label htmlFor="publishdate">Publish_date: </label>
           <DatePicker
+            className="inputfield"
             selected={formData.Publish_date}
             onChange={(date) =>
               setFormData((prevData) => ({
@@ -112,7 +120,7 @@ const Createbook = () => {
             }
             placeholderText="dd/MM/yyyy"
           />
-          <div className="error-message">{errors.Publish_date}</div>
+          <div className="text">{errors.Publish_date}</div>
         </div>
         <br />
         <button
