@@ -50,11 +50,11 @@ const Editbook = () => {
     ) {
       // Set error messages for empty fields
       setErrors({
-        Book_name: !formData.Book_name ? "Book name is required" : "",
-        Book_author: !formData.Book_author ? "Book Author  is required" : "",
-        Publish_date: !formData.Publish_date ? "Publish date is required" : "",
+        Book_name: !formData.Book_name ? "Book name is required" : null,
+        Book_author: !formData.Book_author ? "Book Author  is required" : null,
+        Publish_date: !formData.Publish_date ? "Publish date is required" : null,
       });
-      return; // Prevent form submission
+    return; // Prevent form submission
     }
     // Validate required fields
     else {
@@ -85,12 +85,13 @@ const Editbook = () => {
 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleDateChange = (date) => {
     // Update the date in the formData state
-
+    setErrors((prevErrors) => ({ ...prevErrors, Publish_date: "" }));
     setFormData((prevData) => ({
       ...prevData,
       Publish_date: date, // Store the date as ISO string

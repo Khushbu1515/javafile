@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./File.css";
 import book from "../assets/book.jpg";
 import moment from "moment";
-// import Createbook from "../create/Createbook";
+
 import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
@@ -54,6 +54,7 @@ const Homepage = () => {
                   <td>{index + 1}</td>
                   <td>{item?.Book_name}</td>
                   <td>{item?.Book_author}</td>
+
                   <td>{moment(item?.Publish_date).format("L")}</td>
                   <td>
                     <button onClick={() => navigate(`/edit/${item.id}`)}>

@@ -69,10 +69,19 @@ const Createbook = () => {
       navigate("/");
     }
   };
-
+  const handleDateChange = (date) => {
+    // Update the date in the formData state
+    setErrors((prevErrors) => ({ ...prevErrors, Publish_date: "" }));
+    setFormData((prevData) => ({
+      ...prevData,
+      Publish_date: date, // Store the date as ISO string
+    }));
+  };
   // Handling onChange event
   const handlechange = (e) => {
     const { name, value } = e.target;
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -112,12 +121,7 @@ const Createbook = () => {
           <DatePicker
             className="inputfield"
             selected={formData.Publish_date}
-            onChange={(date) =>
-              setFormData((prevData) => ({
-                ...prevData,
-                Publish_date: date,
-              }))
-            }
+            onChange={handleDateChange}
             placeholderText="dd/MM/yyyy"
           />
           <div className="text">{errors.Publish_date}</div>
