@@ -65,3 +65,37 @@ form {
     font-size: 15px;
   justify-content: center;
 }
+
+.sortable-header {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .sort-arrows {
+    display: inline-block;
+    position: relative;
+  }
+  .asc-arrow,
+  .desc-arrow {
+    font-size: 12px;
+    
+    color: #e21919; /* Default color for non-highlighted arrows */
+  }
+  
+  .asc-arrow.active {
+    color:black; /* Highlighted color for ascending */
+    position: absolute;
+    top: -5px; /* Adjust this value to control the vertical position of the ascending arrow */
+  
+  }
+  
+  .desc-arrow.active {
+    color:black; /* Highlighted color for descending */
+    position: absolute;
+   
+  }
+  
+  .search-bar {
+    padding: 18px;
+    margin-left: 1314px;
+}
