@@ -8,11 +8,13 @@ import { useNavigate } from "react-router-dom";
 const Homepage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+  const startingId = (currentPage - 1) * itemsPerPage + 1;
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [sortedColumn, setSortedColumn] = useState("Book_name");
   const [sortOrder, setSortOrder] = useState("asc"); // Initial sort order is ascending
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleDelete = (id) => {
@@ -48,23 +50,48 @@ const Homepage = () => {
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
-    // Retrieve data from localStorage and parse it as JSON
-    const bookdata = localStorage.getItem("crudData");
-    if (bookdata) {
-      const parsedData = JSON.parse(bookdata);
-      // Filter the data based on the search query
-      const filteredData = parsedData.filter((book) =>
-        book.Book_name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+    const fetchData = async () => {
+      // Simulate an API call or data loading process
+      // Replace this with your actual data fetching logic
+      await new Promise((resolve) => setTimeout(resolve, 3000));
 
-      // Update the filteredBooks state
-      setFilteredBooks(filteredData);
+      // Retrieve data from localStorage and parse it as JSON
+      const bookdata = localStorage.getItem("crudData");
+      if (bookdata) {
+        const parsedData = JSON.parse(bookdata);
+        // Filter the data based on the search query
+        const filteredData = parsedData.filter((book) =>
+          book.Book_name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
-      // Optionally, you can also update the data state to keep the original data
-      setData(parsedData);
-    }
+        // Update the filteredBooks state
+        setFilteredBooks(filteredData);
+
+        // Optionally, you can also update the data state to keep the original data
+        setData(parsedData);
+
+        // Set loading to false when data is loaded
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [searchQuery]);
-  //console.log("gghjghh", currentItems);
+
+  const SkeletonLoader = () => (
+    // Define your skeleton loading UI here
+    <div className="skeleton-loader">
+      <div className="skeleton-table">
+        <div className="skeleton-row">
+          <div className="skeleton-cell"></div>
+          <div className="skeleton-cell"></div>
+          <div className="skeleton-cell"></div>
+          <div className="skeleton-cell"></div>
+          <div className="skeleton-cell"></div>
+        </div>
+      </div>
+    </div>
+  );
   return (
     <div className="homepage">
       <div className="logo">
@@ -125,10 +152,12 @@ const Homepage = () => {
             <th>Action</th>
           </tr>
           <tbody>
-            {currentItems.length > 0 ? (
+            {loading ? (
+              <SkeletonLoader />
+            ) : currentItems && currentItems.length > 0 ? (
               currentItems.map((item, index) => (
                 <tr key={item.id}>
-                  <td>{index + 1}</td>
+                  <td>{startingId + index}</td>
                   <td>{item?.Book_name}</td>
                   <td>{item?.Book_author}</td>
 

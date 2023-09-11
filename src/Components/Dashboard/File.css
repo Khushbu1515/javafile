@@ -78,24 +78,82 @@ form {
   .asc-arrow,
   .desc-arrow {
     font-size: 12px;
-    
-    color: #e21919; /* Default color for non-highlighted arrows */
+    position:relative;
+    color: cyan /* Default color for non-highlighted arrows */
   }
   
   .asc-arrow.active {
     color:black; /* Highlighted color for ascending */
     position: absolute;
     top: -5px; /* Adjust this value to control the vertical position of the ascending arrow */
-  
+   
   }
   
   .desc-arrow.active {
-    color:black; /* Highlighted color for descending */
+    color:red; /* Highlighted color for descending */
     position: absolute;
+
+
    
   }
   
   .search-bar {
     padding: 18px;
     margin-left: 1314px;
+}
+/* Skeleton loading container */
+
+
+/* Skeleton table */
+.skeleton-table {
+  width: 2500%; /* Make the skeleton table expand to the full width of its container */
+  border-collapse: collapse; /* Remove cell spacing and borders */
+}
+
+/* Skeleton row (table row) */
+.skeleton-row {
+  background-color: #fff; /* Background color for rows (to create alternating row effect) */
+  border-bottom: 5px solid #ddd; /* Add a light border at the bottom of each row */
+}
+
+
+/* Skeleton cell (table cell) */
+.skeleton-cell {
+  
+  height: 15px; /* Set a fixed height for cells */
+  margin: 18px 0; /* Add some vertical spacing between cells */
+  background-color: #eee; /* Background color for cells */
+}
+
+.skeleton-loader.component-a {
+  /* Add your specific styles for Component A skeleton loading here */
+  background-color: #f0f0f0;
+  height: 80px;
+  width: 200px;
+  /* Add other styles as needed */
+}
+
+/* Skeleton loading for Component B */
+.skeleton-loader.component-b {
+  /* Add your specific styles for Component B skeleton loading here */
+  background-color: #e0e0e0;
+  height: 80px;
+  width: 200px;
+  /* Add other styles as needed */
+}
+.skeleton-loader.component-c {
+  /* Add your specific styles for Component A skeleton loading here */
+  background-color: #f0f0f0;
+  height: 80px;
+  width: 200px;
+  /* Add other styles as needed */
+}
+
+/* Skeleton loading for Component B */
+.skeleton-loader.component-d {
+  /* Add your specific styles for Component B skeleton loading here */
+  background-color: #e0e0e0;
+  height: 80px;
+  width: 200px;
+  /* Add other styles as needed */
 }
